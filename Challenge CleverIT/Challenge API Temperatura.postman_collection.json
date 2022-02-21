@@ -1,0 +1,1114 @@
+{
+	"info": {
+		"_postman_id": "8a0995cb-1b0c-430c-9492-134610b5e24d",
+		"name": "Challenge API Temperatura",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Parametros Validos",
+			"item": [
+				{
+					"name": "CP-1 Parametros validos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response currentDate and nextDate, both are a strings\", function () {\r",
+									"    pm.expect(jsonData.currentDate).to.be.an('string')\r",
+									"    pm.expect(jsonData.nextDate).to.be.an('string')\r",
+									"    pm.expect(jsonData).to.be.an(\"array\").that.have.length(2); //Controlo que solo sean 2 campos (current y next)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "challenge/Api-temperatura?Country=Chile&City=Santiago",
+							"host": [
+								"challenge"
+							],
+							"path": [
+								"Api-temperatura"
+							],
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chile"
+								},
+								{
+									"key": "City",
+									"value": "Santiago"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-2 Parametros validos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response currentDate and nextDate, both are a strings\", function () {\r",
+									"    pm.expect(jsonData.currentDate).to.be.an('string')\r",
+									"    pm.expect(jsonData.nextDate).to.be.an('string')\r",
+									"    pm.expect(jsonData).to.be.an(\"array\").that.have.length(2); //Controlo que solo sean 2 campos (current y next)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Chile&City=Arica",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chile"
+								},
+								{
+									"key": "City",
+									"value": "Arica"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-3 Parametros validos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response currentDate and nextDate, both are a strings\", function () {\r",
+									"    pm.expect(jsonData.currentDate).to.be.an('string')\r",
+									"    pm.expect(jsonData.nextDate).to.be.an('string')\r",
+									"    pm.expect(jsonData).to.be.an(\"array\").that.have.length(2); //Controlo que solo sean 2 campos (current y next)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Chile&City=Chiloe",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chile"
+								},
+								{
+									"key": "City",
+									"value": "Chiloe"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-4 Parametros validos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response currentDate and nextDate, both are a strings\", function () {\r",
+									"    pm.expect(jsonData.currentDate).to.be.an('string')\r",
+									"    pm.expect(jsonData.nextDate).to.be.an('string')\r",
+									"    pm.expect(jsonData).to.be.an(\"array\").that.have.length(2); //Controlo que solo sean 2 campos (current y next)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Argentina&City=BuenosAires",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Argentina"
+								},
+								{
+									"key": "City",
+									"value": "BuenosAires"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-5 Parametros validos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response currentDate and nextDate, both are a strings\", function () {\r",
+									"    pm.expect(jsonData.currentDate).to.be.an('string')\r",
+									"    pm.expect(jsonData.nextDate).to.be.an('string')\r",
+									"    pm.expect(jsonData).to.be.an(\"array\").that.have.length(2); //Controlo que solo sean 2 campos (current y next)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Argentina&City=SanJuan",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Argentina"
+								},
+								{
+									"key": "City",
+									"value": "SanJuan"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parametros invalidos",
+			"item": [
+				{
+					"name": "CP-6 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por ciudad incorrecta\r",
+									"pm.test(\"City error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid city\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Chile&City=BuenosAires",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chile"
+								},
+								{
+									"key": "City",
+									"value": "BuenosAires"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-7 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por ciudad incorrecta\r",
+									"pm.test(\"City error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid city\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Chile&City=SanJuan",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chile"
+								},
+								{
+									"key": "City",
+									"value": "SanJuan"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-8 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que la api devuelve un mensaje de error por ciudad incorrecta\r",
+									"pm.test(\"City error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid city\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Argentina&City=Santiago",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Argentina"
+								},
+								{
+									"key": "City",
+									"value": "Santiago"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-9 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por ciudad incorrecta\r",
+									"pm.test(\"City error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid city\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Argentina&City=Arica",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Argentina"
+								},
+								{
+									"key": "City",
+									"value": "Arica"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-10 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por ciudad incorrecta\r",
+									"pm.test(\"City error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid city\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Argentina&City=Chiloe",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Argentina"
+								},
+								{
+									"key": "City",
+									"value": "Chiloe"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-11 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por pais incorrecto\r",
+									"pm.test(\"Country error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid country\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=SanJuan&City=Argentina",
+							"query": [
+								{
+									"key": "Country",
+									"value": "SanJuan"
+								},
+								{
+									"key": "City",
+									"value": "Argentina"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-12 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por pais incorrecto\r",
+									"pm.test(\"Country error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid country\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=BuenosAires&City=Argentina",
+							"query": [
+								{
+									"key": "Country",
+									"value": "BuenosAires"
+								},
+								{
+									"key": "City",
+									"value": "Argentina"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-11 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por pais incorrecto\r",
+									"pm.test(\"Country error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid country\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Santiago&City=Chile",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Santiago"
+								},
+								{
+									"key": "City",
+									"value": "Chile"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-12 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por pais incorrecto\r",
+									"pm.test(\"Country error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid country\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Arica&City=Chile",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Arica"
+								},
+								{
+									"key": "City",
+									"value": "Chile"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-13 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por pais incorrecto\r",
+									"pm.test(\"Country error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid country\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Chiloe&City=Chile",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chiloe"
+								},
+								{
+									"key": "City",
+									"value": "Chile"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-14 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 500\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(500);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?country=Chile&City=Arica",
+							"query": [
+								{
+									"key": "country",
+									"value": "Chile"
+								},
+								{
+									"key": "City",
+									"value": "Arica"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-15 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 500\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(500);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=Chile&city=Arica",
+							"query": [
+								{
+									"key": "Country",
+									"value": "Chile"
+								},
+								{
+									"key": "city",
+									"value": "Arica"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-16 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 500\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(500);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?country=Chile&city=Arica",
+							"query": [
+								{
+									"key": "country",
+									"value": "Chile"
+								},
+								{
+									"key": "city",
+									"value": "Arica"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CP-17 Parametros invalidos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Asumiendo que devuelve un mensaje de error por pais incorrecto\r",
+									"pm.test(\"Country error\", function(){\r",
+									"    pm.expect(jsonData.msg).to.eql(\"invalid country and City\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20-02-2022\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "?Country=AnyCountry&City=AnyCity",
+							"query": [
+								{
+									"key": "Country",
+									"value": "AnyCountry"
+								},
+								{
+									"key": "City",
+									"value": "AnyCity"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

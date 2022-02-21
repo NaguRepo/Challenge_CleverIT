@@ -1,0 +1,1149 @@
+{
+	"info": {
+		"_postman_id": "c39b4489-e44c-40b6-80c7-ddf0c875f68f",
+		"name": "Challenge JsonPlaceholder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response have 10 users and some data from users\", function () {\r",
+									"    pm.expect(jsonData).that.have.length(10); //Controlo que tenga 10 usuarios\r",
+									"    pm.expect(jsonData[0].name).to.be.an('string').to.eql('Leanne Graham');\r",
+									"    pm.expect(jsonData[1].username).to.be.an('string').to.eql('Antonette');\r",
+									"    pm.expect(jsonData[2].email).to.be.an('string').to.eql('Nathan@yesenia.net');\r",
+									"    pm.expect(jsonData[3].address.street).to.be.an('string').to.eql('Hoeger Mall');\r",
+									"    pm.expect(jsonData[4].address.suite).to.be.an('string').to.eql('Suite 351');\r",
+									"    pm.expect(jsonData[5].address.city).to.be.an('string').to.eql('South Christy');\r",
+									"    pm.expect(jsonData[6].address.zipcode).to.be.an('string').to.eql('58804-1099').that.have.lengthOf(10);\r",
+									"    pm.expect(jsonData[7].address.geo.lat).to.be.an('string').to.eql('-14.3990');\r",
+									"    pm.expect(jsonData[8].address.geo.lng).to.be.an('string').to.eql('-168.8889');\r",
+									"    pm.expect(jsonData[9].phone).to.be.an('string').to.eql('024-648-3804');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from created user and setup to environment variables\", function(){\r",
+									"    pm.expect(jsonData.name).to.be.an('string').to.eql(environment.Name);\r",
+									"    pm.expect(jsonData.username).to.be.an('string').to.eql(environment.UserName);\r",
+									"    pm.expect(jsonData.email).to.be.an('string').to.eql(environment.Email);\r",
+									"    pm.expect(jsonData.address.street).to.be.an('string').to.eql(environment.Street);\r",
+									"    pm.expect(jsonData.phone).to.be.an('string').to.eql(environment.Phone);\r",
+									"\r",
+									"    pm.environment.set(\"Id\", jsonData.id);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 10,\r\n    \"name\": \"{{Name}}\",\r\n    \"username\": \"{{UserName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"address\": {\r\n      \"street\": \"{{Street}}\",\r\n      \"suite\": \"Dpto 2B\",\r\n      \"city\": \"Cordoba\",\r\n      \"zipcode\": \"5000\",\r\n      \"geo\": {\r\n        \"lat\": \"-31.42053442511745\",\r\n        \"lng\": \"-64.1817232600545\"\r\n      }\r\n    },\r\n    \"phone\": \"{{Phone}}\",\r\n    \"website\": \"minijuegos.com\",\r\n    \"company\": {\r\n      \"name\": \"Chimichangas\",\r\n      \"catchPhrase\": \"Nunca lastimes a quién después no puedas matar\",\r\n      \"bs\": \"harness real-time e-markets\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/10",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user with invalid data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Este metodo deberia fallar ya que se esta enviando en el body parametros numericos a campos que deberian ser string"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 11,\r\n    \"name\": 14,\r\n    \"username\": 12,\r\n    \"email\": 24,\r\n    \"address\": {\r\n      \"street\": \"{{Street}}\",\r\n      \"suite\": \"Dpto 2B\",\r\n      \"city\": \"Cordoba\",\r\n      \"zipcode\": \"5000\",\r\n      \"geo\": {\r\n        \"lat\": \"-31.42053442511745\",\r\n        \"lng\": \"-64.1817232600545\"\r\n      }\r\n    },\r\n    \"phone\": \"{{Phone}}\",\r\n    \"website\": \"minijuegos.com\",\r\n    \"company\": {\r\n      \"name\": \"Chimichangas\",\r\n      \"catchPhrase\": \"Nunca lastimes a quién después no puedas matar\",\r\n      \"bs\": \"harness real-time e-markets\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 201(Created)\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(201);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from created user and setup to environment variables\", function(){\r",
+									"    pm.expect(jsonData.name).to.be.an('string').to.eql(environment.Name);\r",
+									"    pm.expect(jsonData.username).to.be.an('string').to.eql(environment.UserName);\r",
+									"    pm.expect(jsonData.email).to.be.an('string').to.eql(environment.Email);\r",
+									"    pm.expect(jsonData.address.street).to.be.an('string').to.eql(environment.Street);\r",
+									"    pm.expect(jsonData.phone).to.be.an('string').to.eql(environment.Phone);\r",
+									"\r",
+									"    pm.environment.set(\"Id\", jsonData.id);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 11,\r\n    \"name\": \"{{Name}}\",\r\n    \"username\": \"{{UserName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"address\": {\r\n      \"street\": \"{{Street}}\",\r\n      \"suite\": \"Dpto 2B\",\r\n      \"city\": \"Cordoba\",\r\n      \"zipcode\": \"5000\",\r\n      \"geo\": {\r\n        \"lat\": \"-31.42053442511745\",\r\n        \"lng\": \"-64.1817232600545\"\r\n      }\r\n    },\r\n    \"phone\": \"{{Phone}}\",\r\n    \"website\": \"minijuegos.com\",\r\n    \"company\": {\r\n      \"name\": \"Chimichangas\",\r\n      \"catchPhrase\": \"Nunca lastimes a quién después no puedas matar\",\r\n      \"bs\": \"harness real-time e-markets\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Esta consulta no va a funcionar ya que la pagina de \"Jsonplaceholder\" solo hace una simulacion de los metodos \"POST\" o \"PUT\" (Es decir que no crea ni actualiza realmente, solo lo simula) Pero en el caso de que si lo hiciese los test estarian correctos\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 201(Created)\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(201);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from created user and setup to environment variables\", function(){\r",
+									"    pm.expect(jsonData.name).to.be.an('string').to.eql(environment.Name);\r",
+									"    pm.expect(jsonData.username).to.be.an('string').to.eql(environment.UserName);\r",
+									"    pm.expect(jsonData.email).to.be.an('string').to.eql(environment.Email);\r",
+									"    pm.expect(jsonData.address.street).to.be.an('string').to.eql(environment.Street);\r",
+									"    pm.expect(jsonData.phone).to.be.an('string').to.eql(environment.Phone);\r",
+									"    pm.expect(jsonData.id).to.be.an('string').to.eql(environment.Id)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/{{Id}}",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								"{{Id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/{{Id}}",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								"{{Id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Photos",
+			"item": [
+				{
+					"name": "Get photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response have 5000 photos and some details from these\", function () {\r",
+									"    pm.expect(jsonData).that.have.lengthOf(5000); //Controlo que tenga 5000 photos\r",
+									"    pm.expect(jsonData[1].title).to.be.an('string').to.eql('reprehenderit est deserunt velit ipsam');\r",
+									"    pm.expect(jsonData[2].url).to.be.an('string').to.eql('https://via.placeholder.com/600/24f355');\r",
+									"    pm.expect(jsonData[3].thumbnailUrl).to.be.an('string').to.eql('https://via.placeholder.com/150/d32776');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/photos/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"photos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from updated photo\", function(){\r",
+									"    pm.expect(jsonData.id).to.be.an('number').to.eql(50);\r",
+									"    pm.expect(jsonData.title).to.be.an('string').to.eql('Photo updated');\r",
+									"    pm.expect(jsonData.url).to.be.an('string').to.eql('https://mercadolibre.com');\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"albumId\": 1,\r\n    \"id\": 50,\r\n    \"title\": \"Photo updated\",\r\n    \"url\": \"https://mercadolibre.com\",\r\n    \"thumbnailUrl\": \"https://via.placeholder.com/150/92c952\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/photos/50",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"photos",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Photo with invalid body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 400\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(400);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"//Este metodo deberia fallar ya que se esta enviando en el body totalmente incorrecto sin embargo obtenemos el codigo de status 201 created"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 11,\r\n    \"name\": 14,\r\n    \"username\": 12,\r\n    \"email\": 24,\r\n    \"address\": {\r\n      \"street\": \"{{Street}}\",\r\n      \"suite\": \"Dpto 2B\",\r\n      \"city\": \"Cordoba\",\r\n      \"zipcode\": \"5000\",\r\n      \"geo\": {\r\n        \"lat\": \"-31.42053442511745\",\r\n        \"lng\": \"-64.1817232600545\"\r\n      }\r\n    },\r\n    \"phone\": \"{{Phone}}\",\r\n    \"website\": \"minijuegos.com\",\r\n    \"company\": {\r\n      \"name\": \"Chimichangas\",\r\n      \"catchPhrase\": \"Nunca lastimes a quién después no puedas matar\",\r\n      \"bs\": \"harness real-time e-markets\"\r\n    }\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/photos/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"photos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 201(Created)\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(201);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from updated photo\", function(){\r",
+									"    pm.expect(jsonData.id).to.be.an('number').to.eql(5001);\r",
+									"    pm.expect(jsonData.title).to.be.an('string').to.eql('New photo');\r",
+									"    pm.expect(jsonData.url).to.be.an('string').to.eql('https://instagram.com');\r",
+									"    pm.expect(jsonData.thumbnailUrl).to.be.an('string').to.eql('https://cleverIt.com');\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"albumId\": 1,\r\n    \"id\": 5001,\r\n    \"title\": \"New photo\",\r\n    \"url\": \"https://instagram.com\",\r\n    \"thumbnailUrl\": \"https://cleverIt.com\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/photos/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"photos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get photo by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Esta consulta no va a funcionar ya que la pagina de \"Jsonplaceholder\" solo hace una simulacion de los metodos \"POST\" o \"PUT\" (Es decir que no crea ni actualiza realmente, solo lo simula) Pero en el caso de que si lo hiciese los test estarian correctos\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from created photo\", function(){\r",
+									"    pm.expect(jsonData.id).to.be.an('number').to.eql(5001);\r",
+									"    pm.expect(jsonData.title).to.be.an('string').to.eql('New photo');\r",
+									"    pm.expect(jsonData.url).to.be.an('string').to.eql('https://instagram.com');\r",
+									"    pm.expect(jsonData.thumbnailUrl).to.be.an('string').to.eql('https://cleverIt.com');\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/photos/5001",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"photos",
+								"5001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete photo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/5001",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								"5001"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "Get Todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expect response have 5000 photos and some details from these\", function () {\r",
+									"    pm.expect(jsonData).that.have.lengthOf(200); //Controlo que tenga 200 \"todos\"\r",
+									"    pm.expect(jsonData[0].title).to.be.an('string').to.eql('delectus aut autem');\r",
+									"    pm.expect(jsonData[2].completed).to.be.an('boolean').to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/todos/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"todos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Expected some data from updated photo\", function(){\r",
+									"    pm.expect(jsonData.id).to.be.an('number').to.eql(40); //El id no cambia por mas que se lo cambies en el body\r",
+									"    pm.expect(jsonData.title).to.be.an('string').to.eql('todos updated');\r",
+									"    pm.expect(jsonData.completed).to.be.an('boolean').to.eql(true);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 1,\r\n    \"id\": 6000,\r\n    \"title\": \"todos updated\",\r\n    \"completed\": true\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/todos/40",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"todos",
+								"40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Todos with empty body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 201\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(201);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expected id\", function(){\r",
+									"    pm.expect(jsonData.id).to.be.an('number').to.eql(201);\r",
+									"})\r",
+									"\r",
+									"//Se crea el recurso pero supongo que con todos los objetos del json en null(el response solo muestra el id y no se puede hacer un get sobre un recurso creado)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/todos/",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"todos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todos by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
+									"\r",
+									"//Esta consulta no va a funcionar ya que la pagina de \"Jsonplaceholder\" solo hace una simulacion de los metodos \"POST\" o \"PUT\" (Es decir que no crea ni actualiza realmente, solo lo simula) Pero en el caso de que si lo hiciese los test estarian correctos\r",
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Expected some data from created todos\", function(){\r",
+									"    pm.expect(jsonData.id).to.be.an('number').to.eql(201);\r",
+									"    pm.expect(jsonData.title).to.be.an('string').to.eql('todos updated');\r",
+									"    pm.expect(jsonData.completed).to.be.an('boolean').to.eql(true);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/todos/201",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"todos",
+								"201"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    postman.setNextRequest();\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response as json type\", function(){\r",
+									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
+									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
+									"});\r",
+									"\r",
+									"//Este metodo deberia fallar en el caso de que no existiera ningun recurso con id 201(sin embargo nos trae code status 200 cuando el id 201 no esta creado)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-type",
+								"value": "application/json",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "charset",
+								"value": "UTF-8",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://jsonplaceholder.typicode.com/users/201",
+							"protocol": "https",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"users",
+								"201"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
