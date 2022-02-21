@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c39b4489-e44c-40b6-80c7-ddf0c875f68f",
+		"_postman_id": "63e1b4fd-d0b0-402d-81fc-e1c04b9eaeb7",
 		"name": "Challenge JsonPlaceholder",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -31,7 +31,7 @@
 									"\r",
 									"pm.test(\"Expect response have 10 users and some data from users\", function () {\r",
 									"    pm.expect(jsonData).that.have.length(10); //Controlo que tenga 10 usuarios\r",
-									"    pm.expect(jsonData[0].name).to.be.an('string').to.eql('Leanne Graham');\r",
+									"    pm.expect(jsonData[0].name).to.be.an('string').to.eql('Leanne Graham'); //Controlo algunos datos de algunos usuarios\r",
 									"    pm.expect(jsonData[1].username).to.be.an('string').to.eql('Antonette');\r",
 									"    pm.expect(jsonData[2].email).to.be.an('string').to.eql('Nathan@yesenia.net');\r",
 									"    pm.expect(jsonData[3].address.street).to.be.an('string').to.eql('Hoeger Mall');\r",
@@ -64,15 +64,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/",
-							"protocol": "https",
+							"raw": "{{url}}users/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								""
 							]
 						}
@@ -141,15 +137,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/10",
-							"protocol": "https",
+							"raw": "{{url}}users/10",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								"10"
 							]
 						}
@@ -167,12 +159,12 @@
 									"\r",
 									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
 									"pm.test(\"Response code is 400\", function () {\r",
-									"    postman.setNextRequest(null);\r",
+									"    //postman.setNextRequest(null);\r",
 									"    pm.response.to.have.status(400);\r",
-									"    postman.setNextRequest();\r",
+									"    //postman.setNextRequest();\r",
 									"});\r",
 									"\r",
-									"//Este metodo deberia fallar ya que se esta enviando en el body parametros numericos a campos que deberian ser string"
+									"//Este metodo deberia fallar ya que se esta enviando en el body parametros numericos a campos que deberian ser string sin embargo, obtenemos statusCode 201 lo cual esta mal y es un bug de la API"
 								],
 								"type": "text/javascript"
 							}
@@ -204,15 +196,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/",
-							"protocol": "https",
+							"raw": "{{url}}users/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								""
 							]
 						}
@@ -281,15 +269,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/",
-							"protocol": "https",
+							"raw": "{{url}}users/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								""
 							]
 						}
@@ -297,7 +281,7 @@
 					"response": []
 				},
 				{
-					"name": "Get user by ID",
+					"name": "Get user by ID (Error en la API)",
 					"event": [
 						{
 							"listen": "test",
@@ -305,13 +289,13 @@
 								"exec": [
 									"let jsonData = JSON.parse(responseBody); //guardo el json response en una variable\r",
 									"\r",
-									"//Esta consulta no va a funcionar ya que la pagina de \"Jsonplaceholder\" solo hace una simulacion de los metodos \"POST\" o \"PUT\" (Es decir que no crea ni actualiza realmente, solo lo simula) Pero en el caso de que si lo hiciese los test estarian correctos\r",
+									"//Esta consulta no va a funcionar ya que la pagina de \"Jsonplaceholder\" solo hace una simulacion de los metodos \"POST\" o \"PUT\" (Es decir que no crea ni actualiza realmente, solo lo simula) Pero en el caso de que si lo hiciese los test estarian correctos y deberia devolver codeStatus 200\r",
 									"\r",
 									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
-									"pm.test(\"Response code is 201(Created)\", function () {\r",
-									"    postman.setNextRequest(null);\r",
-									"    pm.response.to.have.status(201);\r",
-									"    postman.setNextRequest();\r",
+									"pm.test(\"Response code is 200\", function () {\r",
+									"    //postman.setNextRequest(null);\r",
+									"    pm.response.to.have.status(200);\r",
+									"    //postman.setNextRequest();\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response as json type\", function(){\r",
@@ -350,15 +334,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/{{Id}}",
-							"protocol": "https",
+							"raw": "{{url}}users/{{Id}}",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								"{{Id}}"
 							]
 						}
@@ -384,7 +364,8 @@
 									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
 									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
 									"});\r",
-									""
+									"\r",
+									"//Este metodo no importa cuantas veces lo ejecutemos siempre nos devolvera code 200 pero deberia ser posible solo ejecutarlo 1 vez y luego deberia devolver code 401 ya que el recurso se deberia haber borrado y no tendria que volver a encontrarlo"
 								],
 								"type": "text/javascript"
 							}
@@ -407,15 +388,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/{{Id}}",
-							"protocol": "https",
+							"raw": "{{url}}users/{{Id}}",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								"{{Id}}"
 							]
 						}
@@ -476,15 +453,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/photos/",
-							"protocol": "https",
+							"raw": "{{url}}photos/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}photos"
 							],
 							"path": [
-								"photos",
 								""
 							]
 						}
@@ -549,15 +522,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/photos/50",
-							"protocol": "https",
+							"raw": "{{url}}photos/50",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}photos"
 							],
 							"path": [
-								"photos",
 								"50"
 							]
 						}
@@ -565,7 +534,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Photo with invalid body",
+					"name": "Create Photo with invalid body (Error en la API)",
 					"event": [
 						{
 							"listen": "test",
@@ -575,9 +544,9 @@
 									"\r",
 									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
 									"pm.test(\"Response code is 400\", function () {\r",
-									"    postman.setNextRequest(null);\r",
+									"    //postman.setNextRequest(null);\r",
 									"    pm.response.to.have.status(400);\r",
-									"    postman.setNextRequest();\r",
+									"    //postman.setNextRequest();\r",
 									"});\r",
 									"\r",
 									"//Este metodo deberia fallar ya que se esta enviando en el body totalmente incorrecto sin embargo obtenemos el codigo de status 201 created"
@@ -612,15 +581,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/photos/",
-							"protocol": "https",
+							"raw": "{{url}}photos/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}photos"
 							],
 							"path": [
-								"photos",
 								""
 							]
 						}
@@ -686,15 +651,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/photos/",
-							"protocol": "https",
+							"raw": "{{url}}photos/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}photos"
 							],
 							"path": [
-								"photos",
 								""
 							]
 						}
@@ -702,7 +663,7 @@
 					"response": []
 				},
 				{
-					"name": "Get photo by id",
+					"name": "Get photo by id (Error en la API)",
 					"event": [
 						{
 							"listen": "test",
@@ -714,9 +675,9 @@
 									"\r",
 									"//Este test es una modificacion del snippet de Postman en el que si el test falla, el runner de postman frena la ejecucion de la coleccion\r",
 									"pm.test(\"Response code is 200\", function () {\r",
-									"    postman.setNextRequest(null);\r",
+									"    //postman.setNextRequest(null);\r",
 									"    pm.response.to.have.status(200);\r",
-									"    postman.setNextRequest();\r",
+									"    //postman.setNextRequest();\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response as json type\", function(){\r",
@@ -753,15 +714,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/photos/5001",
-							"protocol": "https",
+							"raw": "{{url}}photos/5001",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}photos"
 							],
 							"path": [
-								"photos",
 								"5001"
 							]
 						}
@@ -787,7 +744,8 @@
 									"    pm.response.to.be.withBody; //Controlo que el json tenga datos\r",
 									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
 									"});\r",
-									""
+									"\r",
+									"//Este metodo no importa cuantas veces lo ejecutemos siempre nos devolvera code 200 pero deberia ser posible solo ejecutarlo 1 vez y luego deberia devolver code 401 ya que el recurso se deberia haber borrado y no tendria que volver a encontrarlo"
 								],
 								"type": "text/javascript"
 							}
@@ -810,15 +768,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/5001",
-							"protocol": "https",
+							"raw": "{{url}}users/5001",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}users"
 							],
 							"path": [
-								"users",
 								"5001"
 							]
 						}
@@ -865,15 +819,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/todos/",
-							"protocol": "https",
+							"raw": "{{url}}todos/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}todos"
 							],
 							"path": [
-								"todos",
 								""
 							]
 						}
@@ -938,15 +888,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/todos/40",
-							"protocol": "https",
+							"raw": "{{url}}todos/40",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}todos"
 							],
 							"path": [
-								"todos",
 								"40"
 							]
 						}
@@ -954,7 +900,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Todos with empty body",
+					"name": "Create Todos with empty body(Mejora en la API)",
 					"event": [
 						{
 							"listen": "test",
@@ -973,7 +919,7 @@
 									"    pm.expect(jsonData.id).to.be.an('number').to.eql(201);\r",
 									"})\r",
 									"\r",
-									"//Se crea el recurso pero supongo que con todos los objetos del json en null(el response solo muestra el id y no se puede hacer un get sobre un recurso creado)"
+									"//Se crea el recurso pero supongo que con todos los objetos del json en null(el response solo muestra el id y no se puede hacer un get sobre un recurso creado) sin embargo deberia haber validaciones de datos obligatorios por lo que este test quizas deberia fallar en lugar de crear correctamente en recurso"
 								],
 								"type": "text/javascript"
 							}
@@ -1005,15 +951,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/todos/",
-							"protocol": "https",
+							"raw": "{{url}}todos/",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}todos"
 							],
 							"path": [
-								"todos",
 								""
 							]
 						}
@@ -1021,7 +963,7 @@
 					"response": []
 				},
 				{
-					"name": "Get todos by id",
+					"name": "Get todos by id(Error en la API)",
 					"event": [
 						{
 							"listen": "test",
@@ -1070,15 +1012,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/todos/201",
-							"protocol": "https",
+							"raw": "{{url}}todos/201",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}todos"
 							],
 							"path": [
-								"todos",
 								"201"
 							]
 						}
@@ -1105,7 +1043,7 @@
 									"    pm.response.to.be.json; //Controlo que el formato sea json\r",
 									"});\r",
 									"\r",
-									"//Este metodo deberia fallar en el caso de que no existiera ningun recurso con id 201(sin embargo nos trae code status 200 cuando el id 201 no esta creado)"
+									"//Este metodo deberia fallar en el caso de que no existiera ningun recurso con id 201(sin embargo nos trae code status 200 cuando el id 201 no esta creado) y no importa que id utilicemos siempre dara status 200"
 								],
 								"type": "text/javascript"
 							}
@@ -1128,15 +1066,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://jsonplaceholder.typicode.com/users/201",
-							"protocol": "https",
+							"raw": "{{url}}todos/201",
 							"host": [
-								"jsonplaceholder",
-								"typicode",
-								"com"
+								"{{url}}todos"
 							],
 							"path": [
-								"users",
 								"201"
 							]
 						}
